@@ -7,8 +7,7 @@ import { eq, and } from "drizzle-orm";
 import { ClientInputSchema } from "@/lib/validation/clients";
 import type { ClientInputType } from "@/lib/validation/clients";
 
-// Zod schema now from shared
-export { ClientInputSchema };
+// Only async server functions are exported; no object exports
 
 export async function createClientAction(formData: FormData) {
   const session = await getAuthSession();
