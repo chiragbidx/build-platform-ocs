@@ -6,10 +6,15 @@ import { usePathname } from "next/navigation";
 import {
   ChevronDown,
   Home,
-  Hammer,
-  Settings,
   Users,
+  ShoppingCart,
+  Receipt,
   CreditCard,
+  Repeat,
+  BarChart,
+  ClipboardList,
+  Settings,
+  Activity,
 } from "lucide-react";
 import {
   Collapsible,
@@ -29,18 +34,19 @@ const sections: { title: string; items: NavItem[] }[] = [
     title: "Platform",
     items: [
       { label: "Overview", href: "/dashboard", icon: Home },
-      {
-        label: "Feature",
-        href: "/dashboard/feature",
-        icon: Hammer,
-      },
+      { label: "Clients", href: "/dashboard/clients", icon: Users },
+      { label: "Products", href: "/dashboard/products", icon: ShoppingCart },
+      { label: "Invoices", href: "/dashboard/invoices", icon: Receipt },
+      { label: "Payments", href: "/dashboard/payments", icon: CreditCard },
+      { label: "Subscriptions", href: "/dashboard/subscriptions", icon: Repeat },
+      { label: "Reports", href: "/dashboard/reports", icon: BarChart },
+      { label: "Activity Log", href: "/dashboard/activity", icon: Activity },
     ],
   },
   {
     title: "Account",
     items: [
-      { label: "Team", href: "/dashboard/team", icon: Users },
-      { label: "Billing", href: "#", icon: CreditCard, disabled: true },
+      { label: "Team", href: "/dashboard/team", icon: ClipboardList },
       { label: "Settings", href: "/dashboard/settings", icon: Settings },
     ],
   },
