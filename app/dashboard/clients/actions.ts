@@ -31,7 +31,7 @@ export async function createClientAction(formData: FormData) {
   const result = await db.insert(clients).values({
     ...parsed.data,
     teamId: userTeam.id,
-  }).returning({ id: clients.id });
+  }).returning();
 
   return { status: 200, id: result[0]?.id };
 }
