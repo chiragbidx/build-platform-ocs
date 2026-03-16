@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
-import * as schema from "./schema";
+import * as schemaTables from "./schema";
 
 const { Pool } = pg;
 
@@ -17,5 +17,5 @@ export const pool = new Pool({
       : undefined,
 });
 
-// Pass schema for .query helpers to enable db.query.{table}
-export const db = drizzle(pool, { schema });
+// Corrected: Pass { schema: schemaTables } so tables are registered properly for drizzle query helpers
+export const db = drizzle(pool, { schema: schemaTables });
