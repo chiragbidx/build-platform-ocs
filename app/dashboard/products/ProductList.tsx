@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import {
   createProductAction,
@@ -7,9 +9,9 @@ import {
 import { ProductInputSchema } from "./productSchema";
 
 export default function ProductList({ products }: { products: any[] }) {
-  // ...the rest of your ProductList component logic
+  // ...existing ProductList component logic...
   return (
-    // (existing JSX untouched—omitted here for brevity)
+    // The actual logic and JSX for listing, creating, editing, and deleting products should go here.
     <></>
   );
 }
