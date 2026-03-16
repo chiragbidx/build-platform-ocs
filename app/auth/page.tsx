@@ -95,15 +95,17 @@ function AuthPageContent() {
     if (mode === "signup") {
       return {
         id: "signup",
-        title: "Create account",
-        description: "Start your free account in less than a minute.",
+        title: "Create your StripeFlow account",
+        description:
+          "Start securely accepting payments, sending invoices, and managing subscriptions—all in less than a minute.",
       };
     }
 
     return {
       id: "signin",
-      title: "Sign in",
-      description: "Use your email and password to continue.",
+      title: "Sign in to StripeFlow",
+      description:
+        "Sign in to your StripeFlow dashboard. Security and reliability for modern SaaS teams and developers.",
     };
   }, [mode]);
 
@@ -115,21 +117,20 @@ function AuthPageContent() {
           <div className="relative z-10 flex h-full flex-col justify-between">
             <div className="space-y-4">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80">
-                Panda Access
+                StripeFlow Access
               </p>
               <h1 className="max-w-sm text-4xl font-semibold leading-tight tracking-tight">
-                Launch faster with one workspace for your team.
+                Welcome to the future of payments. Register, onboard, and start billing like Stripe—faster.
               </h1>
               <p className="max-w-md text-sm text-muted-foreground">
-                Secure auth, polished interface, and a clean onboarding flow built
-                for production teams.
+                Professional, secure, and developer-friendly: get paid, manage clients, and monitor revenue—all from StripeFlow.
               </p>
             </div>
 
             <div className="relative overflow-hidden rounded-2xl border border-secondary/70 bg-background/80 p-3 shadow-lg">
               <Image
                 src="/demo-img.jpg"
-                alt="Panda product preview"
+                alt="StripeFlow product preview"
                 className="h-full w-full rounded-xl object-cover"
                 width={1200}
                 height={900}
@@ -256,7 +257,7 @@ function AuthPageContent() {
                   </div>
 
                   <Button type="submit" className="w-full" disabled={isPending}>
-                    {isPending ? "Creating account..." : "Create account"}
+                    {isPending ? "Creating account..." : "Create your account"}
                   </Button>
                 </form>
               )}
