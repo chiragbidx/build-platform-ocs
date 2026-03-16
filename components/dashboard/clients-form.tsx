@@ -1,13 +1,14 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { createClientAction, ClientInputSchema } from "@/app/dashboard/clients/actions";
+import { createClientAction } from "@/app/dashboard/clients/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { ClientInputSchema } from "@/lib/validation/clients";
 
 export function ClientsForm({ afterCreate }: { afterCreate?: () => void }) {
   const [status, setStatus] = useState<null | { success?: string; error?: string }>(null);
