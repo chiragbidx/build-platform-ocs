@@ -2,9 +2,7 @@ import { redirect } from "next/navigation";
 import { getAuthSession } from "@/lib/auth/session";
 import { listInvoicesAction } from "./actions";
 import { db } from "@/lib/db/client";
-
-import dynamic from "next/dynamic";
-const InvoiceList = dynamic(() => import("./InvoiceList"), { ssr: false });
+import InvoiceList from "./InvoiceList";
 
 export default async function InvoicesPage() {
   const session = await getAuthSession();
