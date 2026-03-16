@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, numeric, uniqueIndex } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
 export const users = pgTable("users", {
@@ -76,3 +76,98 @@ export const teamInvitations = pgTable("team_invitations", {
     .notNull()
     .defaultNow(),
 });
+
+// ─── CLIENTS ───────────────────────────────────────────────────────────────
+export const clients = pgTable(
+  "clients",
+  {
+    id: text("id")
+      .notNull()
+      .default(sql`gen_random_uuid()`)
+      .primaryKey(),
+    teamId: text("team_id")
+      .notNull()
+      .references(() => teams.id, { onDelete: "cascade" }),
+    name: text("name").notNull(),
+    email: text("email"),
+    phone: text("phone"),
+    company: text("company"),
+    address: text("address"),
+    taxId: text("tax_id"),
+    status: text("status").notNull().default("active"), // active, archived
+    billingInfo: text("billing_info"), // optional JSON
+    notes: text("notes"), // top-level summary/notes
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("clients_team_name_idx").on(table.teamId, table.name),
+  ]
+);
+
+export const clientNotes = pgTable(
+  "client_notes",
+  {
+    id: text("id")
+      .notNull()
+      .default(sql`gen_random_uuid()`)
+      .primaryKey(),
+    clientId: text("client_id")
+      .notNull()
+      .references(() => clients.id, { onDelete: "cascade" }),
+    authorId: text("author_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    note: text("note").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+export const clientProjects = pgTable(
+  "client_projects",
+  {
+    id: text("id")
+      .notNull()
+      .default(sql`gen_random_uuid()`)
+      .primaryKey(),
+    clientId: text("client_id")
+      .notNull()
+      .references(() => clients.id, { onDelete: "cascade" }),
+    teamId: text("team_id")
+      .notNull()
+      .references(() => teams.id, { onDelete: "cascade" }),
+    name: text("name").notNull(),
+    status: text("status").notNull().default("active"), // active, completed, archived
+    ownerId: text("owner_id").references(() => users.id),
+    budget: numeric("budget"),
+    startDate: timestamp("start_date"),
+    endDate: timestamp("end_date"),
+    summary: text("summary"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+export const clientProjectTasks = pgTable(
+  "client_project_tasks",
+  {
+    id: text("id")
+      .notNull()
+      .default(sql`gen_random_uuid()`)
+      .primaryKey(),
+    projectId: text("project_id")
+      .notNull()
+      .references(() => clientProjects.id, { onDelete: "cascade" }),
+    name: text("name").notNull(),
+    description: text("description"),
+    status: text("status").notNull().default("open"), // open, in_progress, completed, cancelled
+    ownerId: text("owner_id").references(() => users.id),
+    dueDate: timestamp("due_date"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
