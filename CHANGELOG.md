@@ -34,4 +34,20 @@
   - components/home/LayoutTestimonialSection.tsx  
   - components/home/LayoutFaqSection.tsx
 
+## 2024-06-11 Dashboard Nav/Feature Surface Expansion – StripeFlow
+
+- Updated dashboard sidebar navigation for StripeFlow: new Platform entries (Clients, Products, Invoices, Payments, Subscriptions, Reports, Activity Log).
+- Added placeholder pages for `/dashboard/clients`, `/dashboard/products`, `/dashboard/invoices`, `/dashboard/payments`, `/dashboard/subscriptions`, `/dashboard/reports`, `/dashboard/activity`, all with StripeFlow branded copy, empty states, and clear CTAs.
+- Modernized section/route structure to reflect StripeFlow SaaS payments, billing, and analytics flows. 
+- All new pages guarded by authentication, enforcing multi-tenant separation.
+- [Files affected]
+  - components/dashboard/sidebar-nav.tsx
+  - app/dashboard/clients/page.tsx
+  - app/dashboard/products/page.tsx
+  - app/dashboard/invoices/page.tsx
+  - app/dashboard/payments/page.tsx
+  - app/dashboard/subscriptions/page.tsx
+  - app/dashboard/reports/page.tsx
+  - app/dashboard/activity/page.tsx
+
 ---
