@@ -4,10 +4,11 @@ import { db } from "@/lib/db/client";
 import { clients, clientNotes, clientProjects } from "@/lib/db/schema";
 import { getAuthSession } from "@/lib/auth/session";
 import { eq, and } from "drizzle-orm";
-import { ClientInputSchema, ClientInputType } from "@/lib/validation/clients";
+import { ClientInputSchema } from "@/lib/validation/clients";
+import type { ClientInputType } from "@/lib/validation/clients";
 
 // Zod schema now from shared
-export { ClientInputSchema, ClientInputType };
+export { ClientInputSchema };
 
 export async function createClientAction(formData: FormData) {
   const session = await getAuthSession();
