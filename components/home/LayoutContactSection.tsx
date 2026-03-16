@@ -137,7 +137,7 @@ export const LayoutContactSection = () => {
                       <FormItem className="w-full">
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Leopoldo" {...field} />
+                          <Input placeholder="Chirag" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -150,7 +150,7 @@ export const LayoutContactSection = () => {
                       <FormItem className="w-full">
                         <FormLabel>Last Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Miranda" {...field} />
+                          <Input placeholder="Dodiya" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -218,7 +218,7 @@ export const LayoutContactSection = () => {
                         <FormControl>
                           <Textarea
                             rows={5}
-                            placeholder="Tell us about your SaaS idea, stage, and timeline..."
+                            placeholder="How can we help with StripeFlow?"
                             className="resize-none"
                             {...field}
                           />
