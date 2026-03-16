@@ -3,22 +3,11 @@
 import { db } from "@/lib/db/client";
 import { clients, clientNotes, clientProjects } from "@/lib/db/schema";
 import { getAuthSession } from "@/lib/auth/session";
-import { z } from "zod";
 import { eq, and } from "drizzle-orm";
+import { ClientInputSchema, ClientInputType } from "@/lib/validation/clients";
 
-// Zod schemas
-export const ClientInputSchema = z.object({
-  name: z.string().min(1, "Client name is required."),
-  email: z.string().email().optional().or(z.literal("")),
-  phone: z.string().optional().or(z.literal("")),
-  company: z.string().optional().or(z.literal("")),
-  address: z.string().optional().or(z.literal("")),
-  taxId: z.string().optional().or(z.literal("")),
-  billingInfo: z.string().optional(),
-  notes: z.string().optional(),
-});
-
-export type ClientInputType = z.infer<typeof ClientInputSchema>;
+// Zod schema now from shared
+export { ClientInputSchema, ClientInputType };
 
 export async function createClientAction(formData: FormData) {
   const session = await getAuthSession();
