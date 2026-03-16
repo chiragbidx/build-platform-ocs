@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getAuthSession } from "@/lib/auth/session";
-import { listReportsAction, createReportAction, ReportInputSchema } from "./actions";
-import { useState } from "react";
+import { listReportsAction } from "./actions";
+import AddReportForm from "./AddReportForm";
 
 export default async function ReportsPage() {
   const session = await getAuthSession();
@@ -42,36 +42,5 @@ function ReportList({ reports }: { reports: any[] }) {
         </div>
       ))}
     </div>
-  );
-}
-
-function AddReportForm() {
-  const [formState, setFormState] = useState({
-    type: "",
-    filters: "",
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const parsed = ReportInputSchema.safeParse(formState);
-    if (!parsed.success) {
-      alert(parsed.error.issues[0]?.message);
-      return;
-    }
-    const resp = await createReportAction(parsed.data);
-    if (resp?.status === 200) {
-      setFormState({ type: "", filters: "" });
-      window.location.reload();
-    } else {
-      alert(resp?.error || "Failed to create report");
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="my-8 p-4 border rounded-lg flex flex-col md:flex-row gap-2 items-center">
-      <input className="border rounded px-2 py-1" value={formState.type} onChange={e => setFormState({ ...formState, type: e.target.value })} placeholder="Report type (revenue, churn, etc.)" required />
-      <input className="border rounded px-2 py-1" value={formState.filters} onChange={e => setFormState({ ...formState, filters: e.target.value })} placeholder="Optional filters (JSON/CSV)" />
-      <button type="submit" className="rounded bg-primary text-white px-4 py-2">Run report</button>
-    </form>
   );
 }
