@@ -1,9 +1,7 @@
 import { redirect } from "next/navigation";
 import { getAuthSession } from "@/lib/auth/session";
 import { listProductsAction } from "./actions";
-import dynamic from "next/dynamic";
-
-const ProductList = dynamic(() => import("./ProductList"), { ssr: false });
+import ProductList from "./ProductList";
 
 export default async function ProductsPage() {
   const session = await getAuthSession();
