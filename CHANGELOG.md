@@ -2,6 +2,7 @@
 
 ## 2024-06-07
 
-- Upgraded `drizzle-orm` to ^0.46.6 in package.json for improved compatibility and bug-fixes.
-- Registered schema correctly in db client for .query helpers and reference resolution.
-- Pending: Run `npm install` to update lockfile and apply new dependency versions.
+- Corrected `drizzle-orm` version in package.json to ^0.46.0 (latest available release).
+- Previous attempt with ^0.46.6 caused npm ETARGET, as that version is not published.
+- Registered schema in db client for .query helpers and reference resolution.
+- Next: Run `npm install` to apply lockfile updates and install the latest valid version.
