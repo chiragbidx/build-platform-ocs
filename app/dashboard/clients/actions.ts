@@ -27,11 +27,11 @@ export async function createClientAction(formData: FormData) {
   if (!userTeam)
     return { status: 403, error: "Team not found. Cannot create clients." };
 
-  // Create client
+  // Create client (v0.45.1: .returning({ id: clients.id }) is recommended)
   const result = await db.insert(clients).values({
     ...parsed.data,
     teamId: userTeam.id,
-  }).returning();
+  }).returning({ id: clients.id });
 
   return { status: 200, id: result[0]?.id };
 }
